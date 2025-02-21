@@ -1,4 +1,5 @@
-#Requires AutoHotkey >=v2.0-a
+#Requires AutoHotkey >=v2.0
+#SingleInstance Force
 ; ==================================
 ; # 用于将窗口隐藏到 AHK 托盘的脚本
 ; ==================================

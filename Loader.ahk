@@ -36,10 +36,7 @@ CapsLock & F5::Reload() ; CapsLock + F5 重载脚本
 CapsLock & F1::Help     ; CapsLock + F1 帮助信息
 ; ---------------------------------------------------------------------
 ; # Capslock 独立剪贴板
-#include default/CaspLockCV_v1.ahk
-CapsLock & C::CapsLockC()
-CapsLock & X::CapsLockX()
-CapsLock & V::CapsLockV()
+#include default/CaspLockCV_v2.ahk
 ; ---------------------------------------------------------------------
 ; # 模拟鼠标
 ; ## 可调整参数
