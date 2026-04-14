@@ -1,7 +1,7 @@
 #Requires AutoHotkey >=v2.0
 #SingleInstance Force
 ; ==================================
-; # 用于将窗口隐藏到 AHK 托盘的脚本
+; # 用于将窗口隐藏到 AHK 托盘的脚本（修复 VSCode 等窗口恢复空白问题）
 ; ==================================
 
 ; 存储最小化窗口信息的数组
@@ -13,6 +13,15 @@ mainTrayMenu := A_TrayMenu
 mainTrayMenu.Add()  ; 添加分隔符
 mainTrayMenu.Add("无托盘", (*) => {})
 mainTrayMenu.Disable("无托盘")
+
+; 为菜单项设置程序图标（在菜单项标题左侧显示）
+SetMenuItemIcon(menuTitle, hwnd) {
+    try {
+        processPath := WinGetProcessPath(hwnd)
+        if processPath
+            mainTrayMenu.SetIcon(menuTitle, processPath)
+    }
+}
 
 TrayedWindow(){
     ; 获取活动窗口
@@ -27,10 +36,8 @@ TrayedWindow(){
     if !title || !processName
         return
 
-    ; 最小化并隐藏窗口（在添加到托盘之前）
+    ; 仅隐藏窗口，不再修改窗口样式（避免 VSCode 等程序恢复时空白）
     WinHide(activeWin)
-    WinSetStyle("-0x10000000", activeWin)  ; 移除 WS_VISIBLE
-    WinSetStyle("-0x00C00000", activeWin)  ; 移除标题栏和边框
     
     ; 添加到最小化窗口列表
     AddMinimizedWindow(title, processName, activeWin)
@@ -64,12 +71,8 @@ AddMinimizedWindow(title, process, hwnd) {
     ; 添加菜单项到末尾
     mainTrayMenu.Add(menuTitle, RestoreWindow.Bind(iconIndex))
     
-    ; 尝试设置图标
-    try {
-        processPath := WinGetProcessPath(hwnd)
-        if processPath
-            TraySetIcon(processPath)
-    }
+    ; 为菜单项设置程序图标
+    SetMenuItemIcon(menuTitle, hwnd)
     
     iconIndex++
     
@@ -95,12 +98,13 @@ UpdateRestoreAllMenu() {
     
     ; 重新整理菜单顺序
     if (minimizedWindows.Count >= 2) {
-        ; 保存现有窗口项
+        ; 保存现有窗口项（包括原始键和标题）
         menuItems := []
-        for _, info in minimizedWindows {
+        for key, info in minimizedWindows {
             menuItems.Push({
+                key: key,
                 title: info.title,
-                handler: RestoreWindow.Bind(A_Index)
+                handler: RestoreWindow.Bind(key)
             })
             mainTrayMenu.Delete(info.title)
         }
@@ -108,9 +112,10 @@ UpdateRestoreAllMenu() {
         ; 添加"还原全部窗口"选项
         mainTrayMenu.Add("还原全部窗口", RestoreAllWindows)
         
-        ; 重新添加窗口项
+        ; 重新添加窗口项并设置图标
         for item in menuItems {
             mainTrayMenu.Add(item.title, item.handler)
+            SetMenuItemIcon(item.title, minimizedWindows[item.key].hwnd)
         }
     }
     
@@ -139,13 +144,13 @@ RestoreWindow(index, *) {
     if minimizedWindows.Has(index) {
         winInfo := minimizedWindows[index]
         
-        ; 恢复窗口样式
-        WinSetStyle("+0x10000000", winInfo.hwnd)  ; 恢复 WS_VISIBLE
-        WinSetStyle("+0x00C00000", winInfo.hwnd)  ; 恢复标题栏和边框
-        
-        ; 显示并激活窗口
+        ; 直接显示并激活窗口（不再修改窗口样式，避免渲染异常）
         WinShow(winInfo.hwnd)
         WinActivate(winInfo.hwnd)
+        
+        ; 可选：强制重绘一次，确保某些程序（如旧版 VSCode）立即刷新
+        ; 若仍有个别窗口不刷新，可取消下一行注释
+        ; DllCall("RedrawWindow", "Ptr", winInfo.hwnd, "Ptr", 0, "Ptr", 0, "UInt", 0x85)
         
         ; 从菜单中移除
         mainTrayMenu.Delete(winInfo.title)
@@ -183,4 +188,3 @@ ExitHandler(ExitReason, ExitCode) {
         }
     }
 }
-; 

@@ -7,8 +7,7 @@
 ; ---------------------------------------------------------------------
 ; # 自定义依赖
 global Loader := true
-#include ..\Core\CapsCore.ah2
-CapsLock::CapsLockPlusCore()        ; 单独按下 CapsLock 时切换大小写
+#include ..\Core\CapsCore.ah2 ; # CapsLock 大小写切换检测
 ; ---------------------------------------------------------------------
 ; # 基本功能
 CapsLock & F5::Reload() ; CapsLock + F5 重载脚本
