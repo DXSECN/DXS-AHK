@@ -7,25 +7,11 @@
 ; ---------------------------------------------------------------------
 ; # CapsLockPlus2 基础
 global Loader := true
-#include default/CapsLockPlusCore_v1.ahk
+#include default/CapsCore.ahk
 CapsLock::CapsLockPlusCore()        ; 单独按下 CapsLock 时切换大小写
 ; ---------------------------------------------------------------------
 ; # 基础按键映射
-; CapsLock & 1::Send("{Numpad1}")
-; CapsLock & 2::Send("{Numpad2}")
-; CapsLock & 3::Send("{Numpad3}")
-; CapsLock & 4::Send("{Numpad4}")
-; CapsLock & 5::Send("{Numpad5}")
-; CapsLock & 6::Send("{Numpad6}")
-; CapsLock & 7::Send("{Numpad7}")
-; CapsLock & 8::Send("{Numpad8}")
-; CapsLock & 9::Send("{Numpad9}")
-; CapsLock & 0::Send("{Numpad0}")
-; CapsLock & .::Send("{NumpadDot}")
-; CapsLock & /::Send("{NumpadDiv}")
-; CapsLock & +::Send("{NumpadAdd}")
-; CapsLock & -::Send("{NumpadSub}")
-; CapsLock & Space::Send("{NumpadEnter}")
+#Include default/CapsBaseKey.ahk
 #HotIf GetKeyState("CapsLock", "P")
 LAlt & WheelUp::Volume_Up               ; LAlt + 滚轮上 -> 音量加
 LAlt & WheelDown::Volume_Down           ; LAlt + 滚轮下 -> 音量减
@@ -36,7 +22,7 @@ CapsLock & F5::Reload() ; CapsLock + F5 重载脚本
 CapsLock & F1::Help     ; CapsLock + F1 帮助信息
 ; ---------------------------------------------------------------------
 ; # Capslock 独立剪贴板
-#include default/CaspLockCV_v2.ahk
+#include default/CapsCV.ahk
 ; ---------------------------------------------------------------------
 ; # 模拟鼠标
 ; ## 可调整参数
@@ -65,7 +51,7 @@ MouseWheelKey := "F"
 MouseBackKey := "O"
 MouseForwardKey := "U"
 ; ## 功能加载
-#include default/KeyToMouse_v2.ahk
+#include default/CapsKeyToMouse.ahk
 ; ---------------------------------------------------------------------
 
 ; ============================
