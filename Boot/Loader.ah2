@@ -5,7 +5,7 @@
 ; ---------------------------------------------------------------------
 ; # 基础依赖
 global Loader := true
-#include default/CapsCore.ahk
+#include Apps/CapsCore.ah2
 CapsLock::CapsLockPlusCore()        ; 单独按下 CapsLock 时切换大小写
 ; ---------------------------------------------------------------------
 ; # 基本功能
@@ -13,13 +13,13 @@ CapsLock & F5::Reload() ; CapsLock + F5 重载脚本
 CapsLock & F1::Help     ; CapsLock + F1 帮助信息
 ; ---------------------------------------------------------------------
 ; # 基础按键映射
-#Include default/CapsBaseKey.ahk
+#Include Apps/CapsBaseKey.ah2
 ; ---------------------------------------------------------------------
 ; # Capslock 独立剪贴板
-#include default/CapsCV.ahk
+#include Apps/CapsCV.ah2
 ; ---------------------------------------------------------------------
 ; # 模拟鼠标
-#include default/KeyToMouse.ahk
+#include Apps/KeyToMouse.ah2
 ; ---------------------------------------------------------------------
 
 
@@ -30,6 +30,6 @@ CapsLock & F1::Help     ; CapsLock + F1 帮助信息
 
 ; ---------------------------------------------------------------------
 ; # 窗口托盘化
-#include plugin/TrayedWindow.ahk
+#include plugin/TrayedWindow.ah2
 CapsLock & N::TrayedWindow()      ; CapsLock + N 最小化窗口到托盘
 ; ---------------------------------------------------------------------

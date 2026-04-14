@@ -11,7 +11,7 @@ global CapsLockState := false
 }
 
 CheckCapsLockRelease() {
-    global CapsLockPressTimeZ
+    global CapsLockPressTime
     ; 如果 CapsLock 仍然处于按下状态，说明用户可能正在组合键，不做处理
     if GetKeyState("CapsLock", "P")
         return
