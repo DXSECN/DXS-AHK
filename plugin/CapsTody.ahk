@@ -2,7 +2,7 @@
 #SingleInstance Force
 
 ; 今日日期
-CapsLock & t:: {
+CapsTody(){
     ; 获取当前日期和时间
     currentDateTime := DateAdd(A_Now, 0, "days")
     
