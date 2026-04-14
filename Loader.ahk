@@ -1,7 +1,7 @@
 ﻿#Requires AutoHotkey >=v2.0-
 #SingleInstance Force
 ; ============================
-;    CapsLock 增强功能脚本
+;    CapsLock++ 自定义版本
 ; ============================
 ; github.com/DXSECN/YH-AHK
 ; ---------------------------------------------------------------------
