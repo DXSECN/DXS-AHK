@@ -11,7 +11,7 @@ speedDecStep := 0.10       ; 减速线性步长
 deceleration := 0.60       ; 减速系数
 speedDecDelay := 40        ; 减速延迟（毫秒，即速度检查定时器周期）
 ; --------- DPI模式参数 ----------
-DPIMinSpeed := 2           ; DPI模式最小速度
+DPIMinSpeed := 1           ; DPI模式最小速度
 DPIMaxSpeed := 10          ; DPI模式最大速度
 DPISpeedIncStep := 0.20    ; DPI模式加速线性步长
 DPIAcceleration := 1.00    ; DPI模式加速系数
@@ -32,8 +32,8 @@ LeftKey := "J"
 RightKey := "L"
 LeftMouseClickKey := "D"
 RightMouseClickKey := "A"
-MiddleMouseClickKey := "E"
-MouseWheelKey := "F"
+MiddleMouseClickKey := "W"
+MouseWheelKey := "S"
 MouseBackKey := "O"
 MouseForwardKey := "U"
 ; ----------------------------
