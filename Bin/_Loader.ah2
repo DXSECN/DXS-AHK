@@ -18,6 +18,7 @@ CapsLock & F1::Help     ; CapsLock + F1 帮助信息
 #Include CapsBaseKey.ah2 ; # 基础按键映射
 #include CapsCV.ah2 ; # Capslock 独立剪贴板
 #include KeyToMouse.ah2 ; # 键盘模拟鼠标
+#Include CapsClick.ah2 ; # Capslock 鼠标连点
 ; ---------------------------------------------------------------------
 ; # 自定义功能加载
 #include ..\Core\FunctionCore.ah2 ; # 自定义函数功能核心

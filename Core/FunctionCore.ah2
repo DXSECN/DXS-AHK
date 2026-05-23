@@ -13,3 +13,5 @@ CapsTody(){
     ; 将格式化后的日期发送到活动窗口
     SendInput(formattedDate)
 }
+
+
