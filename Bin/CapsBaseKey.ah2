@@ -24,8 +24,8 @@ CapsLock & E::Send("{Up}")
 CapsLock & D::Send("{Down}")
 CapsLock & S::Send("{Left}")
 CapsLock & F::Send("{Right}")
-
-#HotIf GetKeyState("CapsLock", "P")
-LAlt & WheelUp::Volume_Up               ; LAlt + 滚轮上 -> 音量加
-LAlt & WheelDown::Volume_Down           ; LAlt + 滚轮下 -> 音量减
+ 
+#HotIf GetKeyState("LAlt", "P")
+CapsLock & WheelUp::Volume_Up               ; LAlt + 滚轮上 -> 音量加
+CapsLock & WheelDown::Volume_Down           ; LAlt + 滚轮下 -> 音量减
 #HotIf 

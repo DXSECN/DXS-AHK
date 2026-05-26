@@ -165,6 +165,13 @@ FunctionKeyState(*) {
     ResetMouseState()
     SetTimer(CheckSpeed, 0)
     
+    global CapsLockFix
+    ; 重置CapsLock状态（如果功能键就是CapsLock）
+    if (FunctionKey = "CapsLock" && CapsLockFix = true) {
+        SetCapsLockState(!GetKeyState("CapsLock", "T"))
+        CapsLockFix := false
+    }
+
     ; 重置全局移动相关变量，避免下次进入时残留状态
     global moveSpeed, lastMoveTime, sequenceStartTime, isDPIMode
     isDPIMode := false
@@ -215,6 +222,7 @@ UpAction(*) {
             MoveMouse(0, -1)
         Sleep(10)
     }
+    global CapsLockFix := true
 }
 
 DownAction(*) {
@@ -229,6 +237,7 @@ DownAction(*) {
             MoveMouse(0, 1)
         Sleep(10)
     }
+    global CapsLockFix := true
 }
 
 LeftAction(*) {
@@ -243,6 +252,7 @@ LeftAction(*) {
             MoveMouse(-1, 0)
         Sleep(10)
     }
+    global CapsLockFix := true
 }
 
 RightAction(*) {
@@ -257,6 +267,7 @@ RightAction(*) {
             MoveMouse(1, 0)
         Sleep(10)
     }
+    global CapsLockFix := true
 }
 
 ; ---------- 鼠标按键（支持拖拽模式，未改动） ----------
@@ -284,6 +295,7 @@ LeftMouseClick(*) {
         KeyWait(LeftMouseClickKey)
         Click "Up Left"
     }
+    global CapsLockFix := true
 }
 
 RightMouseClick(*) {
@@ -310,6 +322,7 @@ RightMouseClick(*) {
         KeyWait(RightMouseClickKey)
         Click "Up Right"
     }
+    global CapsLockFix := true
 }
 
 MiddleMouseClick(*) {
@@ -336,22 +349,27 @@ MiddleMouseClick(*) {
         KeyWait(MiddleMouseClickKey)
         Click "Up Middle"
     }
+    global CapsLockFix := true
 }
 
 MouseBackKeyClick(*) {
     Send "{XButton1}"
+    global CapsLockFix := true
 }
 
 MouseForwardKeyClick(*) {
     Send "{XButton2}"
+    global CapsLockFix := true
 }
 
 MouseWheelUp(*) {
     Send "{WheelUp}"
+    global CapsLockFix := true
 }
 
 MouseWheelDown(*) {
     Send "{WheelDown}"
+    global CapsLockFix := true
 }
 
 ; ---------- 重置鼠标按键状态（防止卡键） ----------
