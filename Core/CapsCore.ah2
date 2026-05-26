@@ -13,7 +13,7 @@ global CapsLockState := false
 CapsLockPlusCore() {
     global CapsLockPressTime := A_TickCount
     ; 启动一个定时器，在 150ms 后检查 CapsLock 是否仍然处于按下状态
-    SetTimer(CheckCapsLockRelease, -150)
+    SetTimer(CheckCapsLockRelease, -150) 
     ; 如果 CapsLock 已经处于按下状态，则切换大小写状态
     if CapsLockState {
         ; 切换大小写状态

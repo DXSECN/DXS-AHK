@@ -16,10 +16,14 @@ CapsLock & /::Send("{NumpadDiv}")
 CapsLock & +::Send("{NumpadAdd}")
 CapsLock & -::Send("{NumpadSub}")
 CapsLock & Space::Send("{NumpadEnter}")
-CapsLock & Q::Send("{Delete}")
+CapsLock & `::Send("{Delete}")
 CapsLock & Z::Send("{Backspace}")
 CapsLock & `;::Send("{Text}_")
-CapsLock & '::Send("{Text}_")
+
+CapsLock & E::Send("{Up}")
+CapsLock & D::Send("{Down}")
+CapsLock & S::Send("{Left}")
+CapsLock & F::Send("{Right}")
 
 #HotIf GetKeyState("CapsLock", "P")
 LAlt & WheelUp::Volume_Up               ; LAlt + 滚轮上 -> 音量加
