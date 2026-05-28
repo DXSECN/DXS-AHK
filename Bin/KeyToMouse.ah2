@@ -1,4 +1,4 @@
-#Requires AutoHotkey >=v2.0-
+#Requires AutoHotkey v2.0
 #SingleInstance Force
 ; --------- 默认模式参数 ----------
 minSpeed := 3              ; 最小速度
