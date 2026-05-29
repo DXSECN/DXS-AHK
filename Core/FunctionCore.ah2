@@ -11,7 +11,7 @@ CapsTody(){
     formattedDate := FormatTime(currentDateTime, "yyyy/M/d")
     
     ; 将格式化后的日期发送到活动窗口
-    SendInput(formattedDate)
+    SendText(formattedDate)
 }
 
 
