@@ -17,6 +17,7 @@ CapsLock & F5::Reload() ; CapsLock + F5 重载脚本
 #include CapsCV.ah2 ; # Capslock 独立剪贴板
 #include KeyToMouse.ah2 ; # 键盘模拟鼠标
 #Include CapsClick.ah2 ; # Capslock 鼠标连点
+#Include CapsCaculator.ah2 ; # 计算器
 ; ---------------------------------------------------------------------
 ; # 自定义功能加载
 #include ..\Core\FunctionCore.ah2 ; # 自定义函数功能核心
