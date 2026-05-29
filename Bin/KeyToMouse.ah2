@@ -11,7 +11,7 @@ deceleration := 0.60       ; 减速系数
 speedDecDelay := 40        ; 减速延迟（毫秒，即速度检查定时器周期）
 ; --------- DPI模式参数 ----------
 DPIMinSpeed := 1           ; DPI模式最小速度
-DPIMaxSpeed := 10          ; DPI模式最大速度
+DPIMaxSpeed := 5          ; DPI模式最大速度
 DPISpeedIncStep := 0.20    ; DPI模式加速线性步长
 DPIAcceleration := 1.00    ; DPI模式加速系数
 DPISpeedIncDelay := 20    ; DPI模式加速延迟（毫秒）
@@ -136,7 +136,8 @@ FunctionKeyState(*) {
     Hotkey LeftMouseClickKey, LeftMouseClick, "On"
     Hotkey RightMouseClickKey, RightMouseClick, "On"
     Hotkey MiddleMouseClickKey, MiddleMouseClick, "On"
-    Hotkey SwitchDPIKey, SwitchDPIKeyPress, "On"
+    Hotkey SwitchDPIKey, SwitchDPIKeyDown, "On"
+    Hotkey SwitchDPIKey " Up", SwitchDPIKeyUp, "On"
     Hotkey MouseWheelKey " & " UpKey, MouseWheelUp, "On"
     Hotkey MouseWheelKey " & " DownKey, MouseWheelDown, "On"
     Hotkey MouseBackKey, MouseBackKeyClick, "On"
@@ -158,6 +159,7 @@ FunctionKeyState(*) {
     Hotkey RightMouseClickKey, "Off"
     Hotkey MiddleMouseClickKey, "Off"
     Hotkey SwitchDPIKey, "Off"
+    Hotkey SwitchDPIKey " Up", "Off"
     Hotkey MouseWheelKey " & " UpKey, "Off"
     Hotkey MouseWheelKey " & " DownKey, "Off"
     Hotkey MouseBackKey, "Off"
@@ -180,25 +182,22 @@ FunctionKeyState(*) {
     sequenceStartTime := 0
 }
 
-; LAlt 按下时切换到 DPI 模式，松开时恢复
-SwitchDPIKeyPress(*) {
-    global isDPIMode, moveSpeed, DPIMinSpeed, minSpeed, lastMoveTime, sequenceStartTime
-    
-    ; 按下 LAlt：进入 DPI 模式
+; LAlt 按下：进入 DPI 模式
+SwitchDPIKeyDown(*) {
+    global isDPIMode, moveSpeed, DPIMinSpeed, lastMoveTime, sequenceStartTime
     if !isDPIMode {
         isDPIMode := true
         moveSpeed := DPIMinSpeed
-        ; 重置移动序列时间戳，避免加速延迟状态跨模式继承
         lastMoveTime := 0
         sequenceStartTime := 0
-        ; 调整定时器周期为 DPI 模式的 speedDecDelay
         dpiParams := GetCurrentParams()
         SetTimer(CheckSpeed, dpiParams.speedDecDelay)
     }
-    
-    KeyWait(SwitchDPIKey)
-    
-    ; 松开 LAlt：恢复普通模式
+}
+
+; LAlt 弹起：恢复普通模式
+SwitchDPIKeyUp(*) {
+    global isDPIMode, moveSpeed, minSpeed, lastMoveTime, sequenceStartTime
     if isDPIMode {
         isDPIMode := false
         moveSpeed := minSpeed
