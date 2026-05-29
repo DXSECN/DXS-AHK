@@ -25,7 +25,10 @@ CapsLock & D::Send("{Down}")
 CapsLock & S::Send("{Left}")
 CapsLock & F::Send("{Right}")
  
-#HotIf GetKeyState("LAlt", "P")
-CapsLock & WheelUp::Volume_Up               ; LAlt + 滚轮上 -> 音量加
-CapsLock & WheelDown::Volume_Down           ; LAlt + 滚轮下 -> 音量减
+#HotIf GetKeyState("CapsLock", "P")
+LAlt & MButton::Volume_Mute             ; LAlt + 滚轮上 -> 静音
+LAlt & WheelUp::Volume_Up               ; LAlt + 滚轮上 -> 音量加
+LAlt & WheelDown::Volume_Down           ; LAlt + 滚轮下 -> 音量减
+LAlt & WheelLeft::Send("#^{Left}")       ; LAlt + 滚轮左 -> 窗口左移
+LAlt & WheelRight::Send("#^{Right}")     ; LAlt + 滚轮右 -> 窗口右移
 #HotIf 
