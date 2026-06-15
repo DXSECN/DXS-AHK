@@ -6,11 +6,11 @@
 ; # 外部依赖
 ; ---------------------------------------------------------------------
 ; # 自定义依赖
-#UseHook
 global Loader := true
 ; ---------------------------------------------------------------------
 ; # 基本功能
-CapsLock & F5::Reload() ; CapsLock + F5 重载脚本
+CapsLock & F5::Reload() ; # CapsLock + F5 重载脚本
+CapsLock & P::Suspend() ;2026/6/22026/6/2 # CapsLock + P 暂停脚本
 ; ---------------------------------------------------------------------
 ; # 基础功能组件
 #Include CapsBaseKey.ah2 ; # 基础按键映射
@@ -21,10 +21,10 @@ CapsLock & F5::Reload() ; CapsLock + F5 重载脚本
 ; ---------------------------------------------------------------------
 ; # 自定义功能加载
 #include ..\Core\FunctionCore.ah2 ; # 自定义函数功能核心
-CapsLock & T::CapsTody() ; CapsLock + T 显示当前时间
+CapsLock & T::CapsTody() ; # CapsLock + T 显示当前时间
 ; ---------------------------------------------------------------------
 ; # 其他功能组件
 ; # 窗口托盘化
 #include ..\Modules\TrayedWindow.ah2
-CapsLock & N::TrayedWindow() ; CapsLock + N 最小化窗口到托盘
+CapsLock & \::TrayedWindow() ; # CapsLock + \ 最小化窗口到托盘
 ; ---------------------------------------------------------------------

@@ -1,18 +1,18 @@
 #Requires AutoHotkey >=v2.0-
 #SingleInstance Force
 ; --------- 默认模式参数 ----------
-minSpeed := 3              ; 最小速度
+minSpeed := 5              ; 最小速度
 maxSpeed := 40             ; 最大速度
-speedIncStep := 0.40       ; 加速线性步长
+speedIncStep := 0.20       ; 加速线性步长
 acceleration := 1.05       ; 加速系数
 speedIncDelay := 20       ; 加速延迟（毫秒）
 speedDecStep := 0.10       ; 减速线性步长
 deceleration := 0.60       ; 减速系数
 speedDecDelay := 40        ; 减速延迟（毫秒，即速度检查定时器周期）
 ; --------- DPI模式参数 ----------
-DPIMinSpeed := 1           ; DPI模式最小速度
+DPIMinSpeed := 2           ; DPI模式最小速度
 DPIMaxSpeed := 5          ; DPI模式最大速度
-DPISpeedIncStep := 0.20    ; DPI模式加速线性步长
+DPISpeedIncStep := 0.20    ; DPI模式加速线性步长    l
 DPIAcceleration := 1.00    ; DPI模式加速系数
 DPISpeedIncDelay := 20    ; DPI模式加速延迟（毫秒）
 DPISpeedDecStep := 0.05    ; DPI模式减速线性步长
